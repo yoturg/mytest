@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: #cfcfcf;
+    }
+
+    #container,
+    #water {
+      background-image: url("https://wow.techbrood.com/uploads/161101/lake.jpg");
+      background-position: center bottom;
+    }
+
+    #container {
+      position: absolute;
+      top: calc(50% - 206px);
+      left: calc(50% - 275px);
+      height: 412px;
+      width: 550px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px #4f4f4f;
+    }
+
+    #container #water {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 66%;
+      -webkit-filter: url("#turbulence");
+      filter: url("#turbulence");
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="water"></div>
+  </div>
+  <svg>
+    <filter id="turbulence"  x="0" y="0" width="100%" height="100%">
+      <feTurbulence id="feturbulence"  baseFrequency="0.015 0.3">
+        <animate id="ani1" attributeName="baseFrequency" dur="15s" from="0.015 0.3" to="0.035 0.5" begin="0s; ani2.end" fill="feeze">
+        </animate>
+
+        <animate id="ani2" attributeName="baseFrequency" dur="15s" from="0.035 0.5" to="0.015 0.3" begin="ani1.end"  fill="freeze">
+        </animate>
+      </feTurbulence>
+      <feDisplacementMap xChannelSelector="G" yChannelSelector="B" scale="20" in="SourceGraphic"></feDisplacementMap>
+    </filter>
+  </svg>
+
+</body>
+
+</html>
